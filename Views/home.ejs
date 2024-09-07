@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheet.css">
+    <title>MVC </title>
+</head>
+<body>
+    <h1>sever side rednering</h1>
+
+    <div class="form-container">
+        <form method="POST" action="/url">
+            <label for="">Enter Redirect url: </label>
+            <input type="text" name="url" placeholder="https://www.example.com">
+            <button type="submit"> Generate</button>
+        </form>
+    </div>
+
+    <!-- short url generated and return id -->
+    <% if (locals.id) { %>
+     <h2>URL shorten succuessfully</h2>
+     <h3>shorten Generated url: localhost:8000/url/<%= id %></h3>
+    <% } %>
+    <br><br>
+
+    <!-- get all shorten URLs -->
+    <% if (locals.urls) { %>
+     <table>
+        <thead>
+            <th>SR. </th>
+            <th>shortID</th>
+            <th>Redirect URL</th>
+            <th>clicks </th>
+        </thead>
+        <tbody>
+            <% urls.forEach((url,i) => { %>
+                <tr>
+                    <td><%= i +1 %></td>
+                    <td><%= url.shortID %></td>
+                    <td><%= url.redirectURL %></td>
+                    <td><%= url.timehistory.length %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+     </table>
+    <% } %>
+
+   
+</body>
+</html>
